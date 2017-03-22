@@ -1,0 +1,204 @@
+
+
+body {
+  font: 13px Helvetica, Arial;
+  background: rgba(0,0,0,0.8);
+}
+
+#form-box{
+  margin: 0 auto;
+  margin-left: 29.5%;
+  border: 2px solid #A6C4B9;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+
+}
+
+
+.main-body{
+  margin-left: -25%;
+
+}
+
+
+form {
+  background:rgba(0,0,0,0.1);
+  padding: 3px;
+   bottom: 0;
+   width: 40%;
+  border-radius: 23px 23px 23px;
+ }
+
+form input {
+  border: 0;
+  padding: 10px;
+  width: 73%;
+  margin: 0 auto;
+  border-radius: 18px 18px 18px;
+  margin-right: 8px;
+  margin-left: 2px;
+}
+
+#online{
+  height: 20px;
+  width: 130px;
+  float: left;
+  margin-top: -34px;
+  margin-left: 30px;
+}
+
+#header-text{
+  padding-top: 20px;
+  text-align: center;
+  color:  #83cE9d   ;
+  text-shadow: 8px 8px 40px rgba(3,0,0,0.9);
+  font-size: 30px;
+}
+
+form button {
+  width: 21.5%;
+  background:  #83AE9E   ;
+  color:  #20372E  ;
+
+  padding: 10px;
+  border-radius: 18px 18px 18px;
+  border-color: #A6C4B9;
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: bold;
+
+}
+
+
+form button:hover{
+    background:  #A6C4B9;
+
+}
+
+
+#head-users {
+  text-transform: uppercase;
+  font-weight: bold;
+  background: rgba(0,0,0,0.3);
+  margin-top: 50%;
+  list-style-type: none;
+  padding: 5px 10px;
+  color:  #83cE9d   ;
+  margin-left: 25%;
+  width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+
+}
+
+#messages {
+  list-style-type: none;
+  height: 350px;
+  width: 40%;
+  margin-top: 60px;
+  overflow:hidden;
+  overflow-y:scroll;
+  margin-left: 27%;
+  word-wrap: break-word;
+}
+
+
+
+#listUsers{
+  list-style-type: none;
+  height: 140px;
+  overflow:hidden;
+  overflow-y:scroll;
+  word-wrap: break-word;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+
+    margin-left: 160px;
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+        width: 260px;
+    /*///min-width: 160px;*/
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #C7D1D1  ;
+}
+
+.show {display:block;}
+
+
+#listUsers li{
+  padding: 5px 10px;
+  background: white;
+  width: 100px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+
+#listUsers li:hover{
+  background-color: #C7D1D1  ;
+}
+
+
+#right-body{
+  float: right;
+  margin-top: -30%;
+  margin-right: 20%;
+
+}
+
+#messages li {
+  padding: 5px 10px;
+  background: white;
+  margin: 0 0 7px 0;
+  border-radius: 8px 8px 8px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+#messages li:nth-child(even) {
+  background: #eee;
+}
+
+#messages {
+  margin-bottom: 40px
+}
+
+#privDiv{
+  margin-left: 10px;
+  height: 75px;
+
+}
+
+#privDiv button {
+  background:  #83AE9E   ;
+  color:  #20372E  ;
+    border: none;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: inherit;
+}
+
+#privM {
+   height: 30px;
+   border: 2px solid #A6C4B9;
+
+   border-radius: 2px;
+   width: 240px;
+   margin-bottom: 5px;
+}

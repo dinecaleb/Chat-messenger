@@ -1,0 +1,8 @@
+{
+    "name": "chatmessenger",
+    "description": "Chat messenger by Caleb tony-enwin",
+    "keywords": [ "Nodejs", "Expressjs", "Mongodb", "Socket.io", "Html", "Javascript", "Css", "Bootstrap" ],
+    "repository": "git+https://github.com/dinecaleb/Chat-messenger.git",
+    "logo": " ",
+    "image": " "
+}

@@ -1,0 +1,66 @@
+<!--
+
+CALEB TONY -ENWIN
+100939996
+ASSIGNMENT3
+
+REFERENCES
+https://socket.io/get-started/chat/ -part of Ui
+LECTURE NOTE code
+W3 SCHOOLS
+-->
+
+
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf8" />
+    <title>Socket.IO chat</title>
+    <link type="text/css" rel="stylesheet" href="style.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="chat.js"></script>
+</head>
+
+
+<body>
+  <div class="main-body">
+    <h1 id="header-text">CHAT MESSENGER</h1>
+    <div id="left-body">
+        <ul id="messages"></ul>
+
+        <form id="form-box" action="">
+            <input id="m" autocomplete="off" placeholder="Enter messages..." /><button>Send</button>
+        </form>
+    </div>
+
+    <div id="right-body">
+        <li id="head-users">USERS: </li>
+        <img id="online" src="green.png">
+
+        <div class="dropdown">
+
+            <div id="myDropdown" class="dropdown-content">
+                <a>Block</a>
+                <a>Unblock</a>
+                <a>Private Message</a>
+                <div id="privDiv">
+                    <input id="privM" autocomplete="off" placeholder="Enter messages..." />
+                    <br />
+                    <button id="sendPrivM">Send</button>
+                    <button id="hidePrivM">Hide</button>
+                </div>
+            </div>
+        </div>
+
+        <ul id="listUsers">
+
+        </ul>
+    </div>
+</div>
+</body>
+
+</html>

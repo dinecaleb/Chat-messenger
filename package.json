@@ -1,0 +1,24 @@
+{
+  "name": "chatmessenger",
+  "version": "1.0.0",
+  "description": "Chat messenger by Caleb tony-enwin",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dinecaleb/Chat-messenger.git"
+  },
+  "author": "Caleb Tony-Enwin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dinecaleb/Chat-messenger/issues"
+  },
+  "homepage": "https://github.com/dinecaleb/Chat-messenger#readme",
+  "dependencies": {
+    "mime-types": "^2.1.14",
+    "socket.io": "^1.7.3"
+  }
+}
