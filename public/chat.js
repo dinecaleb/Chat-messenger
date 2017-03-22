@@ -1,8 +1,7 @@
 // <!--
 //
 // CALEB TONY -ENWIN
-// 100939996
-// ASSIGNMENT3
+
 //
 // REFERENCES
 // https://socket.io/get-started/chat/
