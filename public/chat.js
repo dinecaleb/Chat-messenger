@@ -3,7 +3,6 @@ $(document).ready(function() {
     ////variables
     $('#privDiv').hide();
     var username = prompt("What is your name?");
-    browserNotify('welcome ' + username)
     var userList = []; //unused
     var guest = []; //unused
     var print = 0;
@@ -158,6 +157,7 @@ $(document).ready(function() {
     //sends public message to all users
     socket.on('message', function(user) {
         addMessage(user.username, user.message);
+        browserNotify(user.username + '🙂 said: ' + user.message)
     });
 
 });
