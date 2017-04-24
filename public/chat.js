@@ -3,6 +3,7 @@ $(document).ready(function() {
     ////variables
     $('#privDiv').hide();
     var username = prompt("What is your name?");
+    browserNotify('welcome ' + username)
     var userList = []; //unused
     var guest = []; //unused
     var print = 0;
@@ -161,14 +162,16 @@ $(document).ready(function() {
 
 });
 
-function browserNotifyPermission(){
-  Push.Permission.request(()=>{
-    Push.create('Hello World!')
-  }, onDenied);
+function browserNotifyPermission() {
+    Push.Permission.request(() => {
+        console.log('Subscribed user');
+    },
+    () => {
+    });
 }
 
 function browserNotify(message) {
-    Push.create('Hello World!')
+    Push.create(message)
 }
 
 
