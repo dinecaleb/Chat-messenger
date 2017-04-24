@@ -1,62 +1,21 @@
-// <!--
-//
-// CALEB TONY -ENWIN
 
-//
-// REFERENCES
-// https://socket.io/get-started/chat/
-// LECTURE NOTE code
-// tutorial 7
--->
+var express = require('express');
+var app = express();
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
+var port = process.env.PORT || 3000;
 
-
-
-var http = require('http').createServer(handler);
-var io = require('socket.io')(http);
-var fs = require('fs');
-var mime = require('mime-types');
 
 var clients = [];
 var clientsId = [];
 var usersArray = [];
 
-http.listen(2406);
+server.listen(port, function () {
+  console.log('Server listening at port %d', port);
+});
 
-console.log("Chat server listening on port 2406");
-
-var ROOT = "./public"
-
-
-function handler(req, res) {
-
-    //process the request
-    console.log("Request for: " + req.url);
-    var filename = ROOT + req.url;
-
-    var code = 500;
-    var data = "";
-    if (fs.existsSync(filename)) {
-        var stats = fs.statSync(filename);
-        if (stats.isDirectory()) {
-            filename += "index.html";
-        }
-        console.log("Getting file: " + filename);
-        data = fs.readFileSync(filename);
-        code = 200;
-
-    } else {
-        console.log("File not found");
-        code = 404;
-        data = fs.readFileSync(ROOT + "/404.html");
-    }
-
-    // content header
-    res.writeHead(code, {
-        'content-type': mime.lookup(filename) || 'text/html'
-    });
-    // write message and signal communication is complete
-    res.end(data);
-};
+// Routing
+app.use(express.static(__dirname + '/public'));
 
 ///on connection
 io.on('connection', function(socket, username) {

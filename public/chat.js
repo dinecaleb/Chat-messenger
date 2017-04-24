@@ -1,15 +1,3 @@
-// <!--
-//
-// CALEB TONY -ENWIN
-
-//
-// REFERENCES
-// https://socket.io/get-started/chat/
-// // LECTURE NOTE code
-//    tutorial 7
--->
-//
-
 
 $(document).ready(function() {
   ////variables
