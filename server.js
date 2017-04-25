@@ -5,7 +5,7 @@ var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var port = process.env.PORT || 3000;
 
-
+var x;
 var clients = [];
 var clientsId = [];
 var usersArray = [];
@@ -28,7 +28,8 @@ io.on('connection', function(socket, username) {
         socket.username = username;             //username array
         var myself = socket.username;
         socket.clients.push(socket.username);       //add username to array
-        socket.clientsId.push(socket.id);           //add user id  to array
+        socket.clientsId.push(socket.id);
+                //add user id  to array
         //console.log(socket.clients);
         //console.log(socket.clientsId);
         var user = {
@@ -102,10 +103,10 @@ io.on('connection', function(socket, username) {
 
     })
 
-
+//  var x = socket.clients.indexOf(socket.username);
 //disconnect event, remove the user from user array and send username of that user
     socket.on('disconnect', function() {
-        var x = socket.clients.indexOf(socket.username);
+        x = socket.clients.indexOf(socket.username); 
         socket.index = x;
         io.emit('user_disconnect', {
             user: socket.username,

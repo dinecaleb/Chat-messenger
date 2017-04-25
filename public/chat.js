@@ -11,6 +11,18 @@ $(document).ready(function() {
     var currElem;
     var clickDiv;
     var option;
+    var video;
+
+
+    console.log('Dynamically creating video');
+
+    // var video = document.getElementById("video"),
+    //       vendorUrl = window.URL || window.webkitURL;
+
+    navigator.getMedia = ( navigator.getUserMedia       ||
+                             navigator.webkitGetUserMedia ||
+                             navigator.mozGetUserMedia    ||
+                             navigator.msGetUserMedia );
 
     //when a user connects event, emit username
     socket.on('connect', function() {
@@ -22,6 +34,24 @@ $(document).ready(function() {
     //client side retrive data and update the site
     socket.on('new_user', function(data) {
         //intro message
+        video = document.createElement("video"), vendorUrl = window.URL || window.webkitURL;
+        video.autoplay = true;
+        video.width ="200";
+       video.height ="100";
+        video.id = data.user;
+
+        $(".booth").append(video);
+
+        navigator.getMedia (
+            {audio: false,
+             video: true
+            },
+            function(stream) {
+              video.src = vendorUrl.createObjectURL(stream);
+              video.play();
+            },
+            function(error)  {console.log('Error: ' );}
+        );
 
         var message = timestamp() + ": " + data.user + " has entered the chatroom";
         $('#messages').append($('<li>').html(message));
@@ -140,9 +170,10 @@ $(document).ready(function() {
         var dis = " has disconnected. "
         var message = "<b>" + data.user.fontcolor("darkred") + "</b>" + dis.fontcolor("darkred");
         $('#messages').append($('<li>').html(message));
-
+        // $('video').removeAttr("autoplay");
         var ulElem = document.getElementById('listUsers');
         // var len = $("#listUsers li").length;
+        $("#"+data.user).remove();
         ulElem.removeChild(ulElem.childNodes[data.index + 1]);
     });
 
