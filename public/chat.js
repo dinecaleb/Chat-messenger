@@ -156,6 +156,19 @@ $(document).ready(function() {
 
     //sends public message to all users
     socket.on('message', function(user) {
+
+      function doNotification () {
+            var myNotification = new Notify('Yo dawg!', {
+                body: 'This is an awesome notification',
+                tag: 'My unique id',
+                notifyShow: onShowNotification,
+                notifyClose: onCloseNotification,
+                notifyClick: onClickNotification,
+                notifyError: onErrorNotification,
+                timeout: 4
+            });
+            myNotification.show();
+        }
         addMessage(user.username, user.message);
         browserNotify(user.username + '🙂 said: ' + user.message)
     });
