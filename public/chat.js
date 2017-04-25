@@ -19,10 +19,7 @@ $(document).ready(function() {
     // var video = document.getElementById("video"),
     //       vendorUrl = window.URL || window.webkitURL;
 
-    navigator.getMedia = ( navigator.getUserMedia       ||
-                             navigator.webkitGetUserMedia ||
-                             navigator.mozGetUserMedia    ||
-                             navigator.msGetUserMedia );
+
 
     //when a user connects event, emit username
     socket.on('connect', function() {
@@ -34,6 +31,11 @@ $(document).ready(function() {
     //client side retrive data and update the site
     socket.on('new_user', function(data) {
         //intro message
+        navigator.getMedia = ( navigator.getUserMedia       ||
+                                 navigator.webkitGetUserMedia ||
+                                 navigator.mozGetUserMedia    ||
+                                 navigator.msGetUserMedia );
+                                 
         video = document.createElement("video"), vendorUrl = window.URL || window.webkitURL;
         video.autoplay = true;
         video.width ="200";
