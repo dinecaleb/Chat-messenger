@@ -19,6 +19,7 @@
   "homepage": "https://github.com/dinecaleb/Chat-messenger#readme",
   "dependencies": {
     "express": "^4.15.2",
+    "gulp": "^3.9.1",
     "http": "0.0.0",
     "mime-types": "^2.1.14",
     "push.js": "0.0.13",
