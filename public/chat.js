@@ -11,6 +11,15 @@ $(document).ready(function() {
     var currElem;
     var clickDiv;
     var option;
+    var video;
+
+
+    console.log('Dynamically creating video');
+
+    // var video = document.getElementById("video"),
+    //       vendorUrl = window.URL || window.webkitURL;
+
+
 
     //when a user connects event, emit username
     socket.on('connect', function() {
@@ -22,6 +31,29 @@ $(document).ready(function() {
     //client side retrive data and update the site
     socket.on('new_user', function(data) {
         //intro message
+        navigator.getMedia = ( navigator.getUserMedia       ||
+                                 navigator.webkitGetUserMedia ||
+                                 navigator.mozGetUserMedia    ||
+                                 navigator.msGetUserMedia );
+                                 
+        video = document.createElement("video"), vendorUrl = window.URL || window.webkitURL;
+        video.autoplay = true;
+        video.width ="200";
+       video.height ="100";
+        video.id = data.user;
+
+        $(".booth").append(video);
+
+        navigator.getMedia (
+            {audio: false,
+             video: true
+            },
+            function(stream) {
+              video.src = vendorUrl.createObjectURL(stream);
+              video.play();
+            },
+            function(error)  {console.log('Error: ' );}
+        );
 
         var message = timestamp() + ": " + data.user + " has entered the chatroom";
         $('#messages').append($('<li>').html(message));
@@ -140,9 +172,10 @@ $(document).ready(function() {
         var dis = " has disconnected. "
         var message = "<b>" + data.user.fontcolor("darkred") + "</b>" + dis.fontcolor("darkred");
         $('#messages').append($('<li>').html(message));
-
+        // $('video').removeAttr("autoplay");
         var ulElem = document.getElementById('listUsers');
         // var len = $("#listUsers li").length;
+        $("#"+data.user).remove();
         ulElem.removeChild(ulElem.childNodes[data.index + 1]);
     });
 
@@ -156,6 +189,19 @@ $(document).ready(function() {
 
     //sends public message to all users
     socket.on('message', function(user) {
+
+      function doNotification () {
+            var myNotification = new Notify('Yo dawg!', {
+                body: 'This is an awesome notification',
+                tag: 'My unique id',
+                notifyShow: onShowNotification,
+                notifyClose: onCloseNotification,
+                notifyClick: onClickNotification,
+                notifyError: onErrorNotification,
+                timeout: 4
+            });
+            myNotification.show();
+        }
         addMessage(user.username, user.message);
         browserNotify(user.username + '🙂 said: ' + user.message)
     });
