@@ -1,10 +1,10 @@
-
 $(document).ready(function() {
-  ////variables
+    browserNotifyPermission()
+    ////variables
     $('#privDiv').hide();
     var username = prompt("What is your name?");
-    var userList = [];    //unused
-    var guest = [];       //unused
+    var userList = []; //unused
+    var guest = []; //unused
     var print = 0;
     var socket = io();
     var clicked;
@@ -14,14 +14,14 @@ $(document).ready(function() {
 
     //when a user connects event, emit username
     socket.on('connect', function() {
-          socket.emit('new_user', username);
+        socket.emit('new_user', username);
 
     })
 
 
     //client side retrive data and update the site
     socket.on('new_user', function(data) {
-      //intro message
+        //intro message
 
         var message = timestamp() + ": " + data.user + " has entered the chatroom";
         $('#messages').append($('<li>').html(message));
@@ -52,7 +52,7 @@ $(document).ready(function() {
                 option = clickDiv.text().trim(); //the click option from the dropdown
                 //  console.log(option);
 
-//if statment for options clicked from dropdown menu
+                //if statment for options clicked from dropdown menu
                 if (option == "Block") {
                     $(clicked).css({
                         'text-decoration': 'line-through',
@@ -112,7 +112,7 @@ $(document).ready(function() {
         });
     });
 
-//private message event, sends a private message
+    //private message event, sends a private message
     socket.on('privMessage', function(data) {
         if (data.message) {
             var message = "Private message from  " + data.sender.toUpperCase() + ": " + data.message;
@@ -121,21 +121,21 @@ $(document).ready(function() {
     });
 
 
-//block event , sends a block notification to blocker
-    socket.on('block',function(data){
+    //block event , sends a block notification to blocker
+    socket.on('block', function(data) {
 
-       var message = "<b>" + data.blocked.fontcolor("red").toUpperCase() + "</b>" + " has been blocked";
-     $('#messages').append($('<li>').html(message));
+        var message = "<b>" + data.blocked.fontcolor("red").toUpperCase() + "</b>" + " has been blocked";
+        $('#messages').append($('<li>').html(message));
     });
 
-//unblock event , sends notification to blocker
-    socket.on('unblock',function(data){
+    //unblock event , sends notification to blocker
+    socket.on('unblock', function(data) {
 
-       var message = "<b>" + data.unblocked.fontcolor("red").toUpperCase() + "</b>" + " has been unblocked";
-     $('#messages').append($('<li>').html(message));
+        var message = "<b>" + data.unblocked.fontcolor("red").toUpperCase() + "</b>" + " has been unblocked";
+        $('#messages').append($('<li>').html(message));
     });
 
-// disconnect handler , sends a notification to all users and removes disconnected usr from list
+    // disconnect handler , sends a notification to all users and removes disconnected usr from list
     socket.on('user_disconnect', function(data) {
         var dis = " has disconnected. "
         var message = "<b>" + data.user.fontcolor("darkred") + "</b>" + dis.fontcolor("darkred");
@@ -146,7 +146,7 @@ $(document).ready(function() {
         ulElem.removeChild(ulElem.childNodes[data.index + 1]);
     });
 
-//input message
+    //input message
     $('form').submit(function() {
         var message = $('#m').val();
         socket.emit('message', message);
@@ -170,9 +170,22 @@ $(document).ready(function() {
             myNotification.show();
         }
         addMessage(user.username, user.message);
+        browserNotify(user.username + '🙂 said: ' + user.message)
     });
 
 });
+
+function browserNotifyPermission() {
+    Push.Permission.request(() => {
+        console.log('Subscribed user');
+    },
+    () => {
+    });
+}
+
+function browserNotify(message) {
+    Push.create(message)
+}
 
 
 function timestamp() {
