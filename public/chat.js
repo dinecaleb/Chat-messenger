@@ -35,7 +35,7 @@ $(document).ready(function() {
                                  navigator.webkitGetUserMedia ||
                                  navigator.mozGetUserMedia    ||
                                  navigator.msGetUserMedia );
-                                 
+
         video = document.createElement("video"), vendorUrl = window.URL || window.webkitURL;
         video.autoplay = true;
         video.width ="200";
@@ -45,11 +45,12 @@ $(document).ready(function() {
         $(".booth").append(video);
 
         navigator.getMedia (
-            {audio: false,
+            {audio: true,
              video: true
             },
             function(stream) {
               video.src = vendorUrl.createObjectURL(stream);
+              console.log(video);
               video.play();
             },
             function(error)  {console.log('Error: ' );}
