@@ -35,7 +35,7 @@ $(document).ready(function() {
                                  navigator.webkitGetUserMedia ||
                                  navigator.mozGetUserMedia    ||
                                  navigator.msGetUserMedia );
-                                 
+
         video = document.createElement("video"), vendorUrl = window.URL || window.webkitURL;
         video.autoplay = true;
         video.width ="200";

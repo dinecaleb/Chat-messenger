@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "node server.js",
-    "start": "node server.js && cd public && lite-server"
+    "start": "nodemon server.js && gulp serve"
   },
   "repository": {
     "type": "git",
@@ -18,11 +18,14 @@
   },
   "homepage": "https://github.com/dinecaleb/Chat-messenger#readme",
   "dependencies": {
+    "browser-sync": "^2.18.8",
+    "browserify": "^14.3.0",
     "express": "^4.15.2",
     "gulp": "^3.9.1",
     "http": "0.0.0",
     "mime-types": "^2.1.14",
-    "push.js": "0.0.13",
+    "morgan": "^1.8.1",
+    "nodemon": "^1.11.0",
     "socket.io": "^1.7.3"
   }
 }

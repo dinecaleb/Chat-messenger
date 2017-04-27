@@ -1,5 +1,18 @@
-'use strict';
+var gulp = require('gulp');
+var browserSync = require('browser-sync').create();
+var reload = browserSync.reload;
 
-const browserSync = require("browser-sync");
-const gulp = require('gulp');
-const nodemon = require('nodemon');
+// Save a reference to the `reload` method
+
+// Watch scss AND html files, doing different things with each.
+gulp.task('serve', function() {
+
+    // Serve files from the root of this project
+    browserSync.init({
+        server: {
+            baseDir: "./public"
+        }
+    });
+
+    gulp.watch("*.html").on("change", reload);
+});

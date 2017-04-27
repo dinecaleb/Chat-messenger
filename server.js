@@ -1,9 +1,10 @@
 
-var express = require('express');
-var app = express();
-var server = require('http').createServer(app);
-var io = require('socket.io')(server);
-var port = process.env.PORT || 3000;
+const express = require('express');
+const app = express();
+const server = require('http').createServer(app);
+const logger = require('morgan');
+const io = require('socket.io')(server);
+const port = process.env.PORT || 5000;
 
 var x;
 var clients = [];
@@ -13,7 +14,8 @@ var usersArray = [];
 server.listen(port, function () {
   console.log('Server listening at port %d', port);
 });
-
+//logger
+app.use(logger('dev'));
 // Routing
 app.use(express.static(__dirname + '/public'));
 
@@ -106,7 +108,7 @@ io.on('connection', function(socket, username) {
 //  var x = socket.clients.indexOf(socket.username);
 //disconnect event, remove the user from user array and send username of that user
     socket.on('disconnect', function() {
-        x = socket.clients.indexOf(socket.username); 
+        x = socket.clients.indexOf(socket.username);
         socket.index = x;
         io.emit('user_disconnect', {
             user: socket.username,
