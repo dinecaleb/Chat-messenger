@@ -6,6 +6,7 @@ var io = require('socket.io')(server);
 var port = process.env.PORT || 3000;
 
 var x;
+var videoSrc;
 var clients = [];
 var clientsId = [];
 var usersArray = [];
@@ -22,10 +23,11 @@ io.on('connection', function(socket, username) {
     // console.log("whada");
 
     //new user event
-    socket.on('new_user', function(username) {
+    socket.on('new_user', function(username) {      
         socket.clients = clients;           //clients array
         socket.clientsId = clientsId;           ///clients id array
-        socket.username = username;             //username array
+        socket.username = username;
+        socket.video = videoSrc;             //username array
         var myself = socket.username;
         socket.clients.push(socket.username);       //add username to array
         socket.clientsId.push(socket.id);
@@ -39,7 +41,8 @@ io.on('connection', function(socket, username) {
         usersArray.push(user);
         io.emit('new_user', {
             user: socket.username,
-            users: socket.clients
+            users: socket.clients,
+            video: socket.video
         });
         //console.log(usersArray);
     });
@@ -106,7 +109,7 @@ io.on('connection', function(socket, username) {
 //  var x = socket.clients.indexOf(socket.username);
 //disconnect event, remove the user from user array and send username of that user
     socket.on('disconnect', function() {
-        x = socket.clients.indexOf(socket.username); 
+        x = socket.clients.indexOf(socket.username);
         socket.index = x;
         io.emit('user_disconnect', {
             user: socket.username,

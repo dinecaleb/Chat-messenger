@@ -31,30 +31,28 @@ $(document).ready(function() {
     //client side retrive data and update the site
     socket.on('new_user', function(data) {
         //intro message
-        navigator.getMedia = ( navigator.getUserMedia       ||
-                                 navigator.webkitGetUserMedia ||
-                                 navigator.mozGetUserMedia    ||
-                                 navigator.msGetUserMedia );
 
-        video = document.createElement("video"), vendorUrl = window.URL || window.webkitURL;
-        video.autoplay = true;
-        video.width ="200";
-       video.height ="100";
-        video.id = data.user;
+      //   video = document.createElement("video"), vendorUrl = window.URL || window.webkitURL;
+      // //   video.autoplay = true;
+      //   video.width ="200";
+      //   video.height ="100";
+      //   video.id = data.user;
+      //   $(".booth").append(video);
+      //
+      //   var constraints = { audio: false, video: true };
+      //
+      //   navigator.mediaDevices.getUserMedia(constraints)
+      //     .then(function(mediaStream) {
+      //       video.srcObject = mediaStream;
+      //       console.log(mediaStream);
+      //       console.log(mediaStream.getVideoTracks());
+      //       video.onloadedmetadata = function(e) {
+      //         video.play();
+      //       };
+      //     })
+      //     .catch(function(err) { console.log(err.name + ": " + err.message); }); // always check for errors at the end.
+      //
 
-        $(".booth").append(video);
-
-        navigator.getMedia (
-            {audio: true,
-             video: true
-            },
-            function(stream) {
-              video.src = vendorUrl.createObjectURL(stream);
-              console.log(video);
-              video.play();
-            },
-            function(error)  {console.log('Error: ' );}
-        );
 
         var message = timestamp() + ": " + data.user + " has entered the chatroom";
         $('#messages').append($('<li>').html(message));
